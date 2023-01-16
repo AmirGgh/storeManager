@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import {
   Chip,
-  List,
   ListItem,
   ListItemButton,
   ListItemText,
@@ -42,7 +41,6 @@ const Add = (props) => {
           <ListItem
             key={prod.id}
             sx={{
-              fontSize: 10,
               backgroundColor: "primary.gray",
               borderRadius: 1,
               boxShadow: 3,

@@ -25,7 +25,7 @@ const update = async (update, id, collec) => {
   await updateDoc(doc(db, collec, id), update);
 };
 const addNewObj = async (obj, collec) => {
-  const newId = await addDoc(collection(db, collec), obj);
+  await addDoc(collection(db, collec), obj);
 };
 
 //-----------------------------------------------------------------
@@ -68,8 +68,9 @@ const handleBuy = async (addedProd, products) => {
     } else {
       outOfStack = true;
       alert(
-        `Not enought ${prod.name} in store, See max amount in the right side - ('quantity in store')`
+        `Not enought ${prod.name} in store, See max amount in the right side - ('quantity:')`
       );
+      return -1;
     }
   });
   if (!outOfStack) {

@@ -168,6 +168,7 @@ const Products = (props) => {
               </Grid>
             );
           }
+          return <Box key={p.id}>{""}</Box>;
         })}
 
         {visibleBuy && (

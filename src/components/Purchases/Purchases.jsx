@@ -27,7 +27,7 @@ const Purchases = () => {
       <Typography variant='h4' align='center' gutterBottom>
         All Purchases
       </Typography>
-      {purchases.length == 0 && (
+      {purchases.length === 0 && (
         <Typography variant='h5' align='center'>
           There are no purchases
         </Typography>

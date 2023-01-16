@@ -2,10 +2,10 @@ import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect, createContext } from "react";
 
-import { db, storage } from "./firebase";
+import { db } from "./firebase";
 import { collection, onSnapshot, query } from "firebase/firestore";
 
-import { Box, Button, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 
 import { useToggle } from "./utils/displayDataUi";
 
@@ -120,17 +120,13 @@ const App = () => {
         nameC={curCustomer?.name}
       />
       {/* Access to components by login state */}
-      {!adminLogin && !login && <Products />}
       <Box>
         <Routes>
+          {!adminLogin && !login && <Route path='/' element={<Products />} />}
           {adminLogin && (
             <Route>
-              <Route path='/' element={<Dashboard />} />
               <Route>
-                <Route
-                  path='/Dashboard'
-                  element={<Dashboard purchases={purchases} />}
-                />
+                <Route path='/Dashboard' element={<Dashboard />} />
                 <Route path='/products' element={<Products />} />
                 <Route path='/customers' element={<Customers />} />
                 <Route path='/purchases' element={<Purchases />} />
