@@ -120,11 +120,9 @@ const App = () => {
         nameC={curCustomer?.name}
       />
       {/* Access to components by login state */}
+      {!adminLogin && !login && <Products />}
       <Box>
         <Routes>
-          {!adminLogin && !login && (
-            <Route path='/homepage' element={<Products />} />
-          )}
           {adminLogin && (
             <Route>
               <Route path='/' element={<Dashboard />} />
