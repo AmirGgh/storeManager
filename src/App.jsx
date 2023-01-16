@@ -119,10 +119,10 @@ const App = () => {
         updateUser={updateUser}
         nameC={curCustomer?.name}
       />
+      {!adminLogin && !login && <Products />}
       {/* Access to components by login state */}
       <Box>
         <Routes>
-          {!adminLogin && !login && <Route path='/' element={<Products />} />}
           {adminLogin && (
             <Route>
               <Route>
