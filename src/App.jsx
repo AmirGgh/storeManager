@@ -124,6 +124,7 @@ const App = () => {
         <Routes>
           <Route>
             <Route path='/' element={<Products />} />
+            <Route path='/storeManager' element={<Products />} />
           </Route>
           {adminLogin && (
             <Route>
