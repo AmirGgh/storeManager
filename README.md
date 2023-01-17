@@ -1,13 +1,19 @@
 # storeManager
+
 ## One-page site that includes:
 - Store manager site - accessible only to admin.
 - Shopping site - accessible only to users.
 - Homepage of the shopping store - public with an option to log in or sing up.
+- The project build with: React, MUI,Firebase
+
+ ### Login:
+ - As admin: username: storeA, password: 111
+ - As user: username: dna, password: dna 
+ - Or sin up.
  
 ___
-## Admin
-Login: username: storeA, password: 111
 
+## Admin
 ### Pages available to admin and their functionalities:
 #### Dashboard 
 Contains information on:
@@ -33,7 +39,6 @@ Contains information on:
 ___
 
 ## User
-- Login: username: asis, password: asis 
 - Sign up
 
 ### Pages available to usres (customers) and thier functionality:
