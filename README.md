@@ -5,6 +5,9 @@
 - Shopping site - accessible only to users.
 - Homepage of the shopping store - public with an option to log in or sing up.
 
+### Deployed project:
+https://amirggh.github.io/storeManager/
+
  ### Login:
  - As admin: username - storeA, password - 111
  - As user: username - dna, password - dna 
