@@ -5,13 +5,15 @@ ___
 ## Admin
 login: username: storeA, password: 111
 
-### pages:
-- Dashboard:
-*Contains information on how many time each product sold, how much every customer spent,
-and how many purchases were sold in each day (if there are no purchases the day will not display at the dashbord) 
-- Products - Display all the products in store also thous that out of stock.
-On click on the button "Edit This Product" admin can edit the product (name, price, quantity, details and image)  
-___
+### pages and thier functionality:
+#### Dashboard - Contains information on:
+-  How many time each product sold.
+-  How much every customer spent.
+- Hhow many purchases were sold in each day (if there are no purchases the day will not display at the dashbord). 
+
+#### Products - Display all the products in store also thous that out of stock.
+-On click on the button "Add Product" admin can add new product (product with name, price, quantity, details and image)  
+-On click on the button "Edit This Product" admin can edit the product in any part.
 
  ___
 ### usres -customers: 
