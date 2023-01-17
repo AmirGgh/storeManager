@@ -109,33 +109,6 @@ const Products = (props) => {
                       color: "black",
                     }}
                   >
-                    {adminLogin && (
-                      <Box>
-                        <Button
-                          variant='contained'
-                          sx={{
-                            margin: 0.5,
-                            backgroundColor: "primary.light",
-                            color: "black",
-                            "&:hover": {
-                              color: "#fff",
-                            },
-                          }}
-                          p={1}
-                          onClick={() => {
-                            setEditProdId(p.id);
-                            setRefImg(p.refImg);
-                            togEdit();
-                          }}
-                        >
-                          {p.name}
-                        </Button>
-                        <Typography>sold: {p.sold}</Typography>
-                        {p.total > 0 && (
-                          <Typography>in total value: {p.total}$</Typography>
-                        )}
-                      </Box>
-                    )}
                     <Typography>{p.name}</Typography>
                     <Typography
                       variant='body2'
@@ -162,6 +135,33 @@ const Products = (props) => {
                       >
                         Buy Product
                       </Button>
+                    )}
+                    {adminLogin && (
+                      <Box>
+                        <Typography>sold: {p.sold}</Typography>
+                        {p.total > 0 && (
+                          <Typography>in total value: {p.total}$</Typography>
+                        )}
+                        <Button
+                          variant='contained'
+                          sx={{
+                            marginTop: 2,
+                            backgroundColor: "primary.light",
+                            color: "black",
+                            "&:hover": {
+                              color: "#fff",
+                            },
+                          }}
+                          p={1}
+                          onClick={() => {
+                            setEditProdId(p.id);
+                            setRefImg(p.refImg);
+                            togEdit();
+                          }}
+                        >
+                          Edit This Product
+                        </Button>
+                      </Box>
                     )}
                   </CardContent>
                 </Card>

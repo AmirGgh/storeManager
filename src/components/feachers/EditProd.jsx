@@ -79,7 +79,6 @@ const EditProd = (props) => {
         <Typography id='modal-modal-title' variant='h6' component='h2'>
           Edit Product - {product.name}
         </Typography>
-        <Typography>kb,m ,</Typography>
         <Box>
           <Accordion>
             <AccordionSummary
