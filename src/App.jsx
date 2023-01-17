@@ -123,7 +123,6 @@ const App = () => {
       <Box>
         <Routes>
           <Route>
-            <Route path='' element={<Products />} />
             <Route path='/storeManager' element={<Products />} />
           </Route>
           {adminLogin && (

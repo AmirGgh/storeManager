@@ -224,7 +224,7 @@ function NavbarHomepage(props) {
                     login ? props.userLogin() : props.setAdminLogin();
                     setLogin();
                     props.updateUser({});
-                    navigate(`/`);
+                    navigate(`/storeManager`);
                   }}
                 >
                   Logout

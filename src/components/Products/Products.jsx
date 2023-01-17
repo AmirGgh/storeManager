@@ -43,21 +43,18 @@ const Products = (props) => {
 
   return (
     <Container maxWidth='lg' sx={{ backgroundColor: "main.dark" }}>
-      {!adminLogin && !login && (
-        <Box>
-          <Typography variant='h4' align='center' gutterBottom>
-            All Products
-          </Typography>
+      <Box>
+        <Typography variant='h4' align='center' gutterBottom>
+          All Products
+        </Typography>
+        {!adminLogin && !login && (
           <Typography variant='h6' align='center' gutterBottom>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
           </Typography>
-        </Box>
-      )}
-      <Typography variant='h4' align='center' gutterBottom>
-        All Products
-      </Typography>
+        )}
+      </Box>
       {adminLogin && (
         <Box
           key='admin'
