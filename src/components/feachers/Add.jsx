@@ -66,10 +66,10 @@ const Add = (props) => {
             >
               <ListItemText key={prod.name} primary={prod.name} />
             </ListItemButton>
-            <Typography key={prod.price} align='right'>
+            <Typography key={`${prod.price}+Price`} align='right'>
               price: {prod.price}
             </Typography>
-            <Typography key={prod.quantity} p={1}>
+            <Typography key={`${prod.quantity}+Quan`} p={1}>
               quantity: {prod.quantity}
             </Typography>
           </ListItem>

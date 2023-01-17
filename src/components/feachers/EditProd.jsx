@@ -1,7 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { useContext, useState } from "react";
@@ -75,82 +79,120 @@ const EditProd = (props) => {
         <Typography id='modal-modal-title' variant='h6' component='h2'>
           Edit Product - {product.name}
         </Typography>
-        <Typography sx={{ width: "33%", flexShrink: 0 }}></Typography>
-        <Box sx={{ margin: 1 }}>
-          {!updates && (
-            <Button variant='contained' component='label'>
-              Choose Image
-              <input
-                onChange={(e) => {
-                  setImageUpload(e.target.files[0]);
-                  setUpdates();
-                }}
-                hidden
-                accept='image/*'
-                multiple
-                type='file'
-              />
-            </Button>
-          )}
-          {updates && (
-            <Button
-              variant='contained'
-              onClick={() => {
-                uploadImage();
-              }}
+        <Typography>kb,m ,</Typography>
+        <Box>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls='panel1a-content'
+              id='panel1a-header'
             >
-              Upload Image
-            </Button>
-          )}
+              <Typography>Change Image</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box sx={{ margin: 1 }}>
+                {!updates && (
+                  <Button variant='contained' component='label'>
+                    Choose Image
+                    <input
+                      onChange={(e) => {
+                        setImageUpload(e.target.files[0]);
+                        setUpdates();
+                      }}
+                      hidden
+                      accept='image/*'
+                      multiple
+                      type='file'
+                    />
+                  </Button>
+                )}
+                {updates && (
+                  <Button
+                    variant='contained'
+                    onClick={() => {
+                      uploadImage();
+                    }}
+                  >
+                    Upload Image
+                  </Button>
+                )}
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls='panel2a-content'
+              id='panel2a-header'
+            >
+              <Typography>Edit Details</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box>
+                <TextField
+                  sx={{ margin: 1 }}
+                  id='filled-basic'
+                  label='Prodact Name'
+                  variant='filled'
+                  defaultValue={product.name}
+                  onChange={(e) =>
+                    setUpdateProd({ ...updateProd, name: e.target.value })
+                  }
+                />
+                <TextField
+                  sx={{ margin: 1 }}
+                  id='filled-basic'
+                  label='Price'
+                  variant='filled'
+                  defaultValue={product.price}
+                  onChange={(e) =>
+                    setUpdateProd({ ...updateProd, price: e.target.value })
+                  }
+                />
+                <TextField
+                  sx={{ margin: 1 }}
+                  id='filled-basic'
+                  label='Quantity'
+                  variant='filled'
+                  defaultValue={product.quantity}
+                  onChange={(e) =>
+                    setUpdateProd({ ...updateProd, quantity: e.target.value })
+                  }
+                />
+              </Box>
+              <Box>
+                <TextField
+                  id='multiline-flexible'
+                  label='Details'
+                  multiline
+                  fullWidth
+                  maxRows={4}
+                  defaultValue={product.details}
+                  onChange={(e) =>
+                    setUpdateProd({ ...updateProd, details: e.target.value })
+                  }
+                />
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls='panel3a-content'
+              id='panel3a-header'
+            >
+              <Typography>Customers Of This Product</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <CustomerOfProduct
+                id={product.id}
+                editCustomer={props.editCustomer}
+                handleClose={handleClose}
+                closeEdit={props.closeEdit}
+              />
+            </AccordionDetails>
+          </Accordion>
         </Box>
-        <br />
-        <Box>
-          <TextField
-            sx={{ margin: 1 }}
-            id='filled-basic'
-            label='Prodact Name'
-            variant='filled'
-            defaultValue={product.name}
-            onChange={(e) =>
-              setUpdateProd({ ...updateProd, name: e.target.value })
-            }
-          />
-          <TextField
-            sx={{ margin: 1 }}
-            id='filled-basic'
-            label='Price'
-            variant='filled'
-            defaultValue={product.price}
-            onChange={(e) =>
-              setUpdateProd({ ...updateProd, price: e.target.value })
-            }
-          />
-          <TextField
-            sx={{ margin: 1 }}
-            id='filled-basic'
-            label='Quantity'
-            variant='filled'
-            defaultValue={product.quantity}
-            onChange={(e) =>
-              setUpdateProd({ ...updateProd, quantity: e.target.value })
-            }
-          />
-        </Box>
-
-        <Box>
-          <TextField
-            id='multiline-flexible'
-            label='Details'
-            multiline
-            fullWidth
-            maxRows={4}
-            defaultValue={product.details}
-            onChange={(e) =>
-              setUpdateProd({ ...updateProd, details: e.target.value })
-            }
-          />
-        </Box>
-
         <Box>
           <Button
             onClick={() => {
@@ -180,12 +222,6 @@ const EditProd = (props) => {
           </Button>
         </Box>
         <br />
-        <CustomerOfProduct
-          id={product.id}
-          editCustomer={props.editCustomer}
-          handleClose={handleClose}
-          closeEdit={props.closeEdit}
-        />
       </Box>
     </Modal>
   );
