@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/storeManager/static/js/main.98d31452.js",
+    "main.js": "/storeManager/static/js/main.c7896b3d.js",
     "index.html": "/storeManager/index.html",
-    "main.98d31452.js.map": "/storeManager/static/js/main.98d31452.js.map"
+    "main.c7896b3d.js.map": "/storeManager/static/js/main.c7896b3d.js.map"
   },
   "entrypoints": [
-    "static/js/main.98d31452.js"
+    "static/js/main.c7896b3d.js"
   ]
 }
