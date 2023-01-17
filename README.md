@@ -1,10 +1,9 @@
 # storeManager
-
-## One-page site that includes:
+ One-page site project build with: React, MUI,Firebase.
+ ####The site includes:
 - Store manager site - accessible only to admin.
 - Shopping site - accessible only to users.
 - Homepage of the shopping store - public with an option to log in or sing up.
-- The project build with: React, MUI,Firebase
 
  ### Login:
  - As admin: username: storeA, password: 111
