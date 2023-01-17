@@ -224,7 +224,6 @@ function NavbarHomepage(props) {
                     login ? props.userLogin() : props.setAdminLogin();
                     setLogin();
                     props.updateUser({});
-                    navigate(`/`);
                   }}
                 >
                   Logout
@@ -238,3 +237,5 @@ function NavbarHomepage(props) {
   );
 }
 export default NavbarHomepage;
+
+// navigate(`/`);
