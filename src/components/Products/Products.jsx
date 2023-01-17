@@ -35,7 +35,7 @@ const Products = (props) => {
   const openEditCustomer = (obj) => {
     setEditCust({ customer: obj.customer, open: obj.open });
   };
-
+  //
   const sumProducts = getProductSum(products, purchases);
   const totalPurch = sumProducts.reduce((sum, prod) => sum + prod.total, 0);
   const prodSold = purchases.length;
