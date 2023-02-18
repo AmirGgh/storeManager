@@ -41,7 +41,7 @@ const Add = (props) => {
           <ListItem
             key={prod.id}
             sx={{
-              borderRadius: 1,
+              borderRadius: 1.1,
               boxShadow: 3,
               margin: 0.5,
               fontSize: 8,
