@@ -17,9 +17,6 @@ const theme = createTheme({
       green: "#82CD47",
     },
   },
-  typography: {
-    fontSize: 12,
-  },
 });
 root.render(
   <React.StrictMode>

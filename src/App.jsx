@@ -122,15 +122,13 @@ const App = () => {
       {/* Access to components by login state */}
       <Box>
         <Routes>
-          {!adminLogin && !login && <Route path='/' element={<Products />} />}
+          <Route>
+            <Route path='/storeManager' element={<Products />} />
+          </Route>
           {adminLogin && (
             <Route>
-              <Route path='/' element={<Dashboard />} />
               <Route>
-                <Route
-                  path='/Dashboard'
-                  element={<Dashboard purchases={purchases} />}
-                />
+                <Route path='/Dashboard' element={<Dashboard />} />
                 <Route path='/products' element={<Products />} />
                 <Route path='/customers' element={<Customers />} />
                 <Route path='/purchases' element={<Purchases />} />

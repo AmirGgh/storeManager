@@ -41,41 +41,35 @@ const Add = (props) => {
           <ListItem
             key={prod.id}
             sx={{
-              borderRadius: 1.1,
+              backgroundColor: "primary.gray",
+              borderRadius: 1,
               boxShadow: 3,
               margin: 0.5,
               fontSize: 8,
               maxWidth: 400,
             }}
-            align='center'
-            onClick={() =>
-              setProdList([
-                ...prodList,
-                {
-                  id: prod.id,
-                  custID: props.userId,
-                  name: prod.name,
-                  date: new Date().toDateString(),
-                  index: prodList.length,
-                },
-              ])
-            }
           >
             <ListItemButton
               key={props.userId}
-              sx={{
-                borderRadius: 1,
-                boxShadow: 3,
-                margin: 0.5,
-                backgroundColor: "primary.light",
-              }}
+              onClick={() =>
+                setProdList([
+                  ...prodList,
+                  {
+                    id: prod.id,
+                    custID: props.userId,
+                    name: prod.name,
+                    date: new Date().toDateString(),
+                    index: prodList.length,
+                  },
+                ])
+              }
             >
               <ListItemText key={prod.name} primary={prod.name} />
             </ListItemButton>
-            <Typography key={prod.price} align='right'>
+            <Typography key={`${prod.price}+Price`} align='right'>
               price: {prod.price}
             </Typography>
-            <Typography key={prod.quantity} p={1}>
+            <Typography key={`${prod.quantity}+Quan`} p={1}>
               quantity: {prod.quantity}
             </Typography>
           </ListItem>
@@ -129,10 +123,8 @@ const Add = (props) => {
             </Button>
           </Paper>
         )}
-        <br />
         <Typography variant='h6' component='h2'>
-          <strong>double click</strong> on item to add new product from The
-          list:
+          Add new product from The list:
         </Typography>
 
         <Box
