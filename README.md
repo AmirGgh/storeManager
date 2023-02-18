@@ -3,7 +3,7 @@
  #### The site includes:
 - Store manager site - accessible only to admin.
 - Shopping site - accessible only to users.
-- Homepage of the shopping store - public with an option to log in or sing up.
+- Homepage of the shopping store - public with an option to log in or sign up.
 
 ### Deployed project:
 https://amirggh.github.io/storeManager/
@@ -11,7 +11,7 @@ https://amirggh.github.io/storeManager/
  ### Login:
  - As admin: username - storeA, password - 111
  - As user: username - dna, password - dna 
- - Or sin up.
+ - Or sign up.
  
 ___
 
