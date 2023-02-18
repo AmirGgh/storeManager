@@ -42,7 +42,7 @@ const SignupForm = (props) => {
     >
       <Container maxWidth='sm' sx={style}>
         <Typography variant='h4' align='center' gutterBottom>
-          Sign Up
+          Log In
         </Typography>
         <form>
           <Grid container spacing={2}>

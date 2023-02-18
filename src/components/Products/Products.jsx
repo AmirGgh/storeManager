@@ -35,7 +35,7 @@ const Products = (props) => {
   const openEditCustomer = (obj) => {
     setEditCust({ customer: obj.customer, open: obj.open });
   };
-  //
+
   const sumProducts = getProductSum(products, purchases);
   const totalPurch = sumProducts.reduce((sum, prod) => sum + prod.total, 0);
   const prodSold = purchases.length;
@@ -43,18 +43,21 @@ const Products = (props) => {
 
   return (
     <Container maxWidth='lg' sx={{ backgroundColor: "main.dark" }}>
-      <Box>
-        <Typography variant='h4' align='center' gutterBottom>
-          All Products
-        </Typography>
-        {!adminLogin && !login && (
+      {!adminLogin && !login && (
+        <Box>
+          <Typography variant='h4' align='center' gutterBottom>
+            All Products
+          </Typography>
           <Typography variant='h6' align='center' gutterBottom>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
           </Typography>
-        )}
-      </Box>
+        </Box>
+      )}
+      <Typography variant='h4' align='center' gutterBottom>
+        All Products
+      </Typography>
       {adminLogin && (
         <Box
           key='admin'
@@ -106,6 +109,33 @@ const Products = (props) => {
                       color: "black",
                     }}
                   >
+                    {adminLogin && (
+                      <Box>
+                        <Button
+                          variant='contained'
+                          sx={{
+                            margin: 0.5,
+                            backgroundColor: "primary.light",
+                            color: "black",
+                            "&:hover": {
+                              color: "#fff",
+                            },
+                          }}
+                          p={1}
+                          onClick={() => {
+                            setEditProdId(p.id);
+                            setRefImg(p.refImg);
+                            togEdit();
+                          }}
+                        >
+                          {p.name}
+                        </Button>
+                        <Typography>sold: {p.sold}</Typography>
+                        {p.total > 0 && (
+                          <Typography>in total value: {p.total}$</Typography>
+                        )}
+                      </Box>
+                    )}
                     <Typography>{p.name}</Typography>
                     <Typography
                       variant='body2'
@@ -133,39 +163,13 @@ const Products = (props) => {
                         Buy Product
                       </Button>
                     )}
-                    {adminLogin && (
-                      <Box>
-                        <Typography>sold: {p.sold}</Typography>
-                        {p.total > 0 && (
-                          <Typography>in total value: {p.total}$</Typography>
-                        )}
-                        <Button
-                          variant='contained'
-                          sx={{
-                            marginTop: 2,
-                            backgroundColor: "primary.light",
-                            color: "black",
-                            "&:hover": {
-                              color: "#fff",
-                            },
-                          }}
-                          p={1}
-                          onClick={() => {
-                            setEditProdId(p.id);
-                            setRefImg(p.refImg);
-                            togEdit();
-                          }}
-                        >
-                          Edit This Product
-                        </Button>
-                      </Box>
-                    )}
                   </CardContent>
                 </Card>
               </Grid>
             );
+          } else {
+            return <h4>No Products In Store</h4>;
           }
-          return <Box key={p.id}>{""}</Box>;
         })}
 
         {visibleBuy && (

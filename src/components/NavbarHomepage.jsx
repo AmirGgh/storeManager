@@ -11,8 +11,8 @@ import LaptopTwoToneIcon from "@mui/icons-material/LaptopTwoTone";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useToggle } from "../utils/displayDataUi";
-import SignupForm from "./LoginSignup/SignupForm";
-import LoginForm from "./LoginSignup/LoginForm";
+import SignupForm from "./StoreAndLogin/SignupForm";
+import LoginForm from "./StoreAndLogin/LoginForm";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -224,7 +224,7 @@ function NavbarHomepage(props) {
                     login ? props.userLogin() : props.setAdminLogin();
                     setLogin();
                     props.updateUser({});
-                    navigate(`/storeManager`);
+                    navigate(`/`);
                   }}
                 >
                   Logout

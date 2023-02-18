@@ -8,6 +8,7 @@ const CustomerOfProduct = (props) => {
   const { customers, purchases } = useContext(AppContext);
   return (
     <Box>
+      <Typography>Customers of this product:</Typography>
       {getCustList(customers, purchases, props.id).map((cust) => {
         return (
           <Button
