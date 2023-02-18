@@ -3,12 +3,14 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { AppContext } from "../../App";
 import { generateColors, purchList } from "../../utils/displayDataUi";
 import "chart.js/auto";
+// import { Chart } from "react-chartjs-2";
+
 import { Bar, Line, Pie } from "react-chartjs-2";
 const Dashboard = () => {
   const { customers, purchases, products } = useContext(AppContext);
 
   // Customer total purchases
-  const [userData, setUserData] = useState({
+  const [userData] = useState({
     labels: customers.map((cust) => cust.fname),
     datasets: [
       {
@@ -42,7 +44,7 @@ const Dashboard = () => {
     purchDays = [...purchDays, { p }];
   });
   purchDays = sortDates(purchDays);
-  const [purchasesData, setpurchasesData] = useState({
+  const [purchasesData] = useState({
     labels: purchDays.map((day) => day.p),
     datasets: [
       {
@@ -58,7 +60,7 @@ const Dashboard = () => {
   });
 
   // Product total sales
-  const [productSalse, setProductSalse] = useState({
+  const [productSalse] = useState({
     labels: products.map((prod) => prod.name),
     datasets: [
       {
