@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import {
   Chip,
-  List,
   ListItem,
   ListItemButton,
   ListItemText,
@@ -42,29 +41,34 @@ const Add = (props) => {
           <ListItem
             key={prod.id}
             sx={{
-              fontSize: 10,
-              backgroundColor: "primary.gray",
               borderRadius: 1,
               boxShadow: 3,
               margin: 0.5,
               fontSize: 8,
               maxWidth: 400,
             }}
+            align='center'
+            onClick={() =>
+              setProdList([
+                ...prodList,
+                {
+                  id: prod.id,
+                  custID: props.userId,
+                  name: prod.name,
+                  date: new Date().toDateString(),
+                  index: prodList.length,
+                },
+              ])
+            }
           >
             <ListItemButton
               key={props.userId}
-              onClick={() =>
-                setProdList([
-                  ...prodList,
-                  {
-                    id: prod.id,
-                    custID: props.userId,
-                    name: prod.name,
-                    date: new Date().toDateString(),
-                    index: prodList.length,
-                  },
-                ])
-              }
+              sx={{
+                borderRadius: 1,
+                boxShadow: 3,
+                margin: 0.5,
+                backgroundColor: "primary.light",
+              }}
             >
               <ListItemText key={prod.name} primary={prod.name} />
             </ListItemButton>
@@ -125,8 +129,10 @@ const Add = (props) => {
             </Button>
           </Paper>
         )}
+        <br />
         <Typography variant='h6' component='h2'>
-          Add new product from The list:
+          <strong>double click</strong> on item to add new product from The
+          list:
         </Typography>
 
         <Box
