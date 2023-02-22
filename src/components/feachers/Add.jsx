@@ -4,27 +4,23 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import {
+  ButtonGroup,
   Chip,
   ListItem,
-  ListItemButton,
   ListItemText,
   Paper,
   styled,
 } from "@mui/material";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 import { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { handleBuy } from "./utilsDB";
-import { FixedSizeList } from "react-window";
 import { styleBoxModal } from "../../utils/displayDataUi";
-
-const ListItemChip = styled("li")(({ theme }) => ({
-  margin: theme.spacing(0.5),
-}));
 
 // Add new product to customers
 const Add = (props) => {
   const { products, login } = useContext(AppContext);
-  let copyProducts = products;
   const [prodList, setProdList] = useState([]);
   const [open, setOpen] = useState(true);
   const handleClose = () => {
@@ -32,62 +28,10 @@ const Add = (props) => {
     setProdList([]);
   };
 
-  // List of products that in stock,
-  // Admin and customers can add multiple products
-  const FixList = () => {
-    return copyProducts.map((prod) => {
-      return (
-        prod.quantity > 0 && (
-          <ListItem
-            key={prod.id}
-            sx={{
-              borderRadius: 1,
-              boxShadow: 3,
-              margin: 0.5,
-              fontSize: 8,
-              maxWidth: 400,
-            }}
-            align='center'
-            onClick={() =>
-              setProdList([
-                ...prodList,
-                {
-                  id: prod.id,
-                  custID: props.userId,
-                  name: prod.name,
-                  date: new Date().toDateString(),
-                  index: prodList.length,
-                },
-              ])
-            }
-          >
-            <ListItemButton
-              key={props.userId}
-              sx={{
-                borderRadius: 1,
-                boxShadow: 3,
-                margin: 0.5,
-                backgroundColor: "primary.light",
-              }}
-            >
-              <ListItemText key={prod.name} primary={prod.name} />
-            </ListItemButton>
-            <Typography key={prod.price} align='right'>
-              price: {prod.price}
-            </Typography>
-            <Typography key={prod.quantity} p={1}>
-              quantity: {prod.quantity}
-            </Typography>
-          </ListItem>
-        )
-      );
-    });
-  };
   return (
     <Modal
       open={open}
       onClose={() => {
-        copyProducts = products;
         handleClose();
         props.closeBuy();
       }}
@@ -130,66 +74,131 @@ const Add = (props) => {
           </Paper>
         )}
         <br />
+        {/* Admin and customers can add multiple products */}
         <Typography variant='h6' component='h2'>
-          <strong>double click</strong> on item to add new product from The
-          list:
+          add new product from The list:
         </Typography>
-
-        <Box
+        <Paper
           sx={{
-            width: "100%",
-            maxHeight: 450,
-            maxWidth: 600,
-            bgcolor: "background.paper",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            padding: 3,
+            boxShadow: 3,
           }}
         >
-          <FixedSizeList
-            height={350}
-            maxWidth={500}
-            itemSize={46}
-            itemCount={1}
-            overscanCount={1}
-          >
-            {FixList}
-          </FixedSizeList>
-        </Box>
-        {prodList.length >= 1 && (
-          <Paper
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              listStyle: "none",
-              p: 0.5,
-            }}
-            component='ul'
-          >
-            {prodList.map((pl, index) => {
+          {products.length > 0 &&
+            products.map((prod) => {
               return (
-                <ListItemChip key={index}>
-                  <Chip
-                    label={pl.name}
-                    onDelete={() => {
-                      setProdList((plist) =>
-                        plist.filter((p) => p.index !== pl.index)
-                      );
-                    }}
-                  />
-                </ListItemChip>
+                prod.quantity > 0 && (
+                  <ListItem>
+                    <ListItem
+                      key={prod.id}
+                      sx={{
+                        borderRadius: 1,
+                        boxShadow: 3,
+                        margin: 0.5,
+                        fontSize: 8,
+                        maxWidth: 400,
+                        backgroundColor: "primary.bright",
+                      }}
+                      align='center'
+                    >
+                      <ListItemText key={prod.name} primary={prod.name} />
+                      <Typography key={prod.price} align='right'>
+                        price: {prod.price}
+                      </Typography>
+                      <Typography key={prod.quantity} p={1}>
+                        quantity: {prod.quantity}
+                      </Typography>
+                    </ListItem>
+                    <ButtonGroup
+                      sx={{
+                        borderRadius: 1,
+                        boxShadow: 3,
+                        margin: 0.5,
+                      }}
+                      disableElevation
+                      variant='contained'
+                      aria-label='Disabled elevation buttons'
+                    >
+                      <Button
+                        sx={{
+                          borderRadius: 1,
+                          boxShadow: 3,
+                          backgroundColor: "primary.light",
+                        }}
+                        onClick={() =>
+                          setProdList([
+                            ...prodList,
+                            {
+                              id: prod.id,
+                              custID: props.userId,
+                              name: prod.name,
+                              date: new Date().toDateString(),
+                              index: prodList.length,
+                            },
+                          ])
+                        }
+                      >
+                        <AddCircleOutlineOutlinedIcon />
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          let fl = true;
+                          const p = prodList.filter((pl) => {
+                            if (fl && pl?.id === prod?.id) {
+                              fl = false;
+                              return false;
+                            } else {
+                              return true;
+                            }
+                          });
+                          setProdList(p);
+                        }}
+                        sx={{
+                          borderRadius: 1,
+                          boxShadow: 3,
+                          backgroundColor: "primary.light",
+                        }}
+                      >
+                        <RemoveCircleOutlineOutlinedIcon />
+                      </Button>
+                    </ButtonGroup>
+                  </ListItem>
+                )
               );
             })}
-          </Paper>
-        )}
-        <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-          <Button
-            onClick={() => {
-              handleBuy(prodList, products);
-              props.closeBuy();
+        </Paper>
+        <br />
+        {prodList.length > 0 && (
+          <Paper
+            sx={{
+              justifyContent: "center",
+              flexWrap: "wrap",
+              padding: 3,
+              boxShadow: 3,
             }}
           >
-            Add Products
-          </Button>
-        </Typography>
+            {prodList.length > 0 && (
+              <Box>
+                {prodList.map((prInList) => {
+                  <Chip label='Chip Filled' sx={{ margin: 0.5 }} />;
+                  return <Chip label={prInList.name} />;
+                })}
+              </Box>
+            )}
+            <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+              <Button
+                onClick={() => {
+                  handleBuy(prodList, products);
+                  props.closeBuy();
+                }}
+              >
+                Add Products
+              </Button>
+            </Typography>
+          </Paper>
+        )}
       </Box>
     </Modal>
   );
