@@ -8,6 +8,10 @@
 ### Deployed project:
 https://amirggh.github.io/storeManager/
 
+## Installetion
+### Client:
+In the client file runs 'npm i' to install all the packages. then run 'npm start' to start the server at 'http://localhost:3000'
+
  ### Login:
  - As admin: username - storeA, password - 111
  - As user: username - dna, password - dna 
