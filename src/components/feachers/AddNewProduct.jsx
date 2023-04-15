@@ -1,25 +1,25 @@
-import {
-  Box,
-  Button,
-  Modal,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { addNewObj } from "./utilsDB";
-import { useToggle } from "../../utils/displayDataUi";
+import { fontTypography, useToggle } from "../../utils/displayDataUi";
 
 import "firebase/storage";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
-const style = {};
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  maxWith: { xs: 400, sm: 600, md: 900 },
+  maxHight: { xs: 400, sm: 600, md: 900 },
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+  ...fontTypography,
+};
 
-const StyleModale = styled(Modal)({
-  display: "flex",
-  alignItems: "center",
-  jastifyContent: "center",
-});
 // get one customer and state for component
 const AddNewProduct = (props) => {
   const [open, setOpen] = useState(true);
@@ -46,17 +46,19 @@ const AddNewProduct = (props) => {
   }
 
   return (
-    <StyleModale
+    <Modal
       open={open}
       onClose={() => {
         if (!inputs) {
           props.closeAddProd();
         }
       }}
+      aria-labelledby='modal-modal-title'
+      aria-describedby='modal-modal-description'
     >
-      <Box width={100} height={120} p={3}>
-        <Typography>Add New Product</Typography>
-        {/* {!inputs && (
+      <Box sx={style}>
+        <Typography sx={fontTypography}>Add New Product</Typography>
+        {!inputs && (
           <>
             {!upload && (
               <Button variant='contained' component='label'>
@@ -87,7 +89,9 @@ const AddNewProduct = (props) => {
                   </Button>
                 )}
                 {uploading && (
-                  <Typography color={"green"}>Uploading...</Typography>
+                  <Typography sx={fontTypography} color={"green"}>
+                    Uploading...
+                  </Typography>
                 )}
               </>
             )}
@@ -97,7 +101,7 @@ const AddNewProduct = (props) => {
           <Box>
             <Box>
               <TextField
-                sx={{ margin: 1 }}
+                sx={{ margin: 1, ...fontTypography }}
                 id='1'
                 label='Product Name'
                 variant='filled'
@@ -106,7 +110,7 @@ const AddNewProduct = (props) => {
                 }
               />
               <TextField
-                sx={{ margin: 1 }}
+                sx={{ margin: 1, ...fontTypography }}
                 id='2'
                 label='Price'
                 variant='filled'
@@ -115,7 +119,7 @@ const AddNewProduct = (props) => {
                 }
               />
               <TextField
-                sx={{ margin: 1 }}
+                sx={{ margin: 1, ...fontTypography }}
                 id='3'
                 label='Quantity'
                 variant='filled'
@@ -130,7 +134,7 @@ const AddNewProduct = (props) => {
                 label='Details'
                 multiline
                 fullWidth
-                sx={{ margin: 1 }}
+                sx={{ margin: 1, ...fontTypography }}
                 maxRows={4}
                 onChange={(e) =>
                   setAddProduct({ ...AddProduct, details: e.target.value })
@@ -138,7 +142,7 @@ const AddNewProduct = (props) => {
               />
             </Box>
             <Button
-              sx={{ margin: 1 }}
+              sx={{ margin: 1, ...fontTypography }}
               variant='contained'
               component='label'
               onClick={() => {
@@ -149,9 +153,9 @@ const AddNewProduct = (props) => {
               Add
             </Button>
           </Box>
-        )} */}
+        )}
       </Box>
-    </StyleModale>
+    </Modal>
   );
 };
 

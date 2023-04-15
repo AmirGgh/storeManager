@@ -1,3 +1,4 @@
+import { Typography, styled } from "@mui/material";
 import { useState } from "react";
 // Toggle between components
 const useToggle = (initalVal = false) => {
@@ -77,11 +78,12 @@ const styleBoxModal = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  p: { xs: 0.5, sm: 1, md: 2, lg: 4 },
 };
 const fontTypography = {
-  fontSize: { xs: "0.7rem", sm: "0.9rem", md: "1rem", lg: "1.2rem" },
+  fontSize: { xs: "0.5rem", sm: "0.6rem", md: "0.8rem", lg: "1.2rem" },
 };
+
 export {
   useToggle,
   purchList,

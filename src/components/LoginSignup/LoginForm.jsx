@@ -10,6 +10,7 @@ import {
   Modal,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { fontTypography } from "../../utils/displayDataUi";
 
 const style = {
   position: "absolute",
@@ -61,7 +62,7 @@ const LoginForm = (props) => {
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
     >
-      <Container maxWidth='sm' sx={style}>
+      <Container maxWidth='sm' sx={{ ...style, ...fontTypography }}>
         <Typography variant='h4' align='center' gutterBottom>
           Login
         </Typography>

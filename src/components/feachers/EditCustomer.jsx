@@ -2,7 +2,7 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { deleteCustomer, update } from "./utilsDB";
-import { styleBoxModal } from "../../utils/displayDataUi";
+import { fontTypography, styleBoxModal } from "../../utils/displayDataUi";
 
 // get one customer and state for component
 const EditCustomer = (props) => {
@@ -21,9 +21,9 @@ const EditCustomer = (props) => {
     >
       <Box sx={styleBoxModal}>
         <Box>
-          <Typography>Edit Customer</Typography>
+          <Typography sx={fontTypography}>Edit Customer</Typography>
           <TextField
-            sx={{ margin: 1 }}
+            sx={{ margin: 1, ...fontTypography }}
             id='filled-basic'
             label='First Name'
             variant='filled'
@@ -33,7 +33,7 @@ const EditCustomer = (props) => {
             }
           />
           <TextField
-            sx={{ margin: 1 }}
+            sx={{ margin: 1, ...fontTypography }}
             id='filled-basic'
             label='Last Name'
             variant='filled'
@@ -43,7 +43,7 @@ const EditCustomer = (props) => {
             }
           />
           <TextField
-            sx={{ margin: 1 }}
+            sx={{ margin: 1, ...fontTypography }}
             id='filled-basic'
             label='City'
             variant='filled'
@@ -55,6 +55,7 @@ const EditCustomer = (props) => {
         </Box>
         <Box>
           <Button
+            sx={fontTypography}
             onClick={() => {
               update(customerUpdate, customer.id, "Customers");
               props.openEditCustomer({ customer: {}, open: !open });
@@ -63,6 +64,7 @@ const EditCustomer = (props) => {
             Update
           </Button>
           <Button
+            sx={fontTypography}
             onClick={() => {
               deleteCustomer(customer.id, customers);
               props.openEditCustomer({ customer: {}, open: !open });

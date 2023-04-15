@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import LaptopTwoToneIcon from "@mui/icons-material/LaptopTwoTone";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import { useToggle } from "../utils/displayDataUi";
+import { fontTypography, useToggle } from "../utils/displayDataUi";
 import SignupForm from "./LoginSignup/SignupForm";
 import LoginForm from "./LoginSignup/LoginForm";
 import { AppContext } from "../App";
@@ -34,7 +34,10 @@ function NavbarHomepage(props) {
   };
 
   return (
-    <AppBar position='static' sx={{ backgroundColor: "primary.dark" }}>
+    <AppBar
+      position='static'
+      sx={{ backgroundColor: "primary.dark", ...fontTypography }}
+    >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <LaptopTwoToneIcon
@@ -57,7 +60,13 @@ function NavbarHomepage(props) {
             COMPU
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              ...fontTypography,
+            }}
+          >
             <IconButton
               size='large'
               aria-label='account of current user'
@@ -91,6 +100,7 @@ function NavbarHomepage(props) {
                 userPages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography
+                      sx={fontTypography}
                       textAlign='center'
                       onClick={() => {
                         navigate(`/${page}`);
@@ -168,7 +178,12 @@ function NavbarHomepage(props) {
                   onClick={() => {
                     navigate(`/${page}`);
                   }}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    ...fontTypography,
+                  }}
                 >
                   {page}
                 </Button>
@@ -180,7 +195,12 @@ function NavbarHomepage(props) {
                   onClick={() => {
                     navigate(`/${page}`);
                   }}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    ...fontTypography,
+                  }}
                 >
                   {page}
                 </Button>
@@ -219,7 +239,12 @@ function NavbarHomepage(props) {
             {(adminLogin || login) && (
               <Box>
                 <Button
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    ...fontTypography,
+                  }}
                   onClick={() => {
                     login ? props.userLogin() : props.setAdminLogin();
                     setLogin();

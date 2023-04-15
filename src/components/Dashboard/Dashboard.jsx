@@ -1,7 +1,11 @@
 import React, { useContext, useMemo, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { AppContext } from "../../App";
-import { generateColors, purchList } from "../../utils/displayDataUi";
+import {
+  fontTypography,
+  generateColors,
+  purchList,
+} from "../../utils/displayDataUi";
 import "chart.js/auto";
 // import { Chart } from "react-chartjs-2";
 
@@ -112,7 +116,7 @@ const Dashboard = () => {
   }, [purchasesData]);
 
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='lg' sx={fontTypography}>
       <Box m={3}>
         <>
           <Typography variant='h4' align='center' gutterBottom>

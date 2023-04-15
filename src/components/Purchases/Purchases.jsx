@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { purchList } from "../../utils/displayDataUi";
+import { fontTypography, purchList } from "../../utils/displayDataUi";
 import { AppContext } from "../../App";
 import Combobox from "../feachers/Combobox";
 
@@ -23,22 +23,26 @@ const Purchases = () => {
   const [customersSearch, setCustomersSearch] = useState(customers);
   const [purchSearch, setPurchSearch] = useState(null);
   return (
-    <Container maxWidth='lg'>
-      <Typography variant='h4' align='center' gutterBottom>
+    <Container maxWidth='lg' sx={fontTypography}>
+      <Typography sx={fontTypography} variant='h4' align='center' gutterBottom>
         All Purchases
       </Typography>
       {purchases.length === 0 && (
-        <Typography variant='h5' align='center'>
+        <Typography sx={fontTypography} variant='h5' align='center'>
           There are no purchases
         </Typography>
       )}
       {purchases.length > 0 && (
         <>
-          <Typography variant='h5'>
+          <Typography sx={fontTypography} variant='h5'>
             Search for customer and their purchases:
           </Typography>
           <br />
-          <Stack sx={{ margin: "auto" }} direction='row' spacing={2}>
+          <Stack
+            sx={{ margin: "auto", ...fontTypography }}
+            direction='row'
+            spacing={2}
+          >
             <Autocomplete
               id='search_customer'
               getOptionLabel={(customers) =>
@@ -51,7 +55,12 @@ const Purchases = () => {
               }
               noOptionsText={"No available customer"}
               renderOption={(props, customers) => (
-                <Box component='li' {...props} key={customers.id}>
+                <Box
+                  component='li'
+                  {...props}
+                  key={customers.id}
+                  sx={fontTypography}
+                >
                   {customers.fname} {customers.lname}
                 </Box>
               )}
@@ -72,7 +81,7 @@ const Purchases = () => {
                 id='search_products'
                 getOptionLabel={(products) => `${products.name} `}
                 options={products}
-                sx={{ width: 200 }}
+                sx={{ width: 200, ...fontTypography }}
                 isOptionEqualToValue={(option, value) =>
                   option.name === value.name
                 }
@@ -98,12 +107,14 @@ const Purchases = () => {
           <br />
           <TableContainer
             component={Paper}
-            sx={{ backgroundColor: "primary.gray" }}
+            sx={{ backgroundColor: "primary.gray", ...fontTypography }}
           >
-            <Table aria-label='simple table'>
+            <Table aria-label='simple table' sx={fontTypography}>
               <TableHead>
                 <TableRow>
-                  <TableCell align='center'>Customer Name</TableCell>
+                  <TableCell fontTypographyalign='center'>
+                    Customer Name
+                  </TableCell>
                   <TableCell align='center'>Prudocts</TableCell>
                   <TableCell align='center'></TableCell>
                 </TableRow>

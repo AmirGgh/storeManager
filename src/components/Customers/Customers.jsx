@@ -11,7 +11,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
 import Paper from "@mui/material/Paper";
-import { purchList, useToggle } from "../../utils/displayDataUi";
+import {
+  fontTypography,
+  purchList,
+  useToggle,
+} from "../../utils/displayDataUi";
 import Add from "../feachers/Add";
 import EditProd from "../feachers/EditProd";
 import EditCustomer from "../feachers/EditCustomer";
@@ -40,7 +44,7 @@ const Customers = () => {
   };
 
   return (
-    <Container maxWidth='xl'>
+    <Container maxWidth='xl' sx={fontTypography}>
       <>
         <Typography variant='h4' align='center' gutterBottom>
           All Customers
@@ -50,7 +54,7 @@ const Customers = () => {
         component={Paper}
         sx={{ backgroundColor: "primary.gray" }}
       >
-        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+        <Table aria-label='simple table' sx={fontTypography}>
           <TableHead>
             <TableRow>
               <TableCell align='center'>Customer Name</TableCell>

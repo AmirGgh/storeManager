@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-import { getCustList } from "../../utils/displayDataUi";
+import { fontTypography, getCustList } from "../../utils/displayDataUi";
 
 //Return a list of all the customers of one product
 const CustomerOfProduct = (props) => {
@@ -11,6 +11,7 @@ const CustomerOfProduct = (props) => {
       {getCustList(customers, purchases, props.id).map((cust) => {
         return (
           <Button
+            sx={fontTypography}
             key={cust.id}
             onClick={() => {
               props.editCustomer({ customer: cust, open: true });

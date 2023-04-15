@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import { fontTypography } from "../../utils/displayDataUi";
 // Return list of customer/s with all the product/s thay bought - by the search in the props.
 const Combobox = (props) => {
   return props.purchList
@@ -12,7 +13,7 @@ const Combobox = (props) => {
     })
     .map((purch, index) => {
       return (
-        <Typography key={index}>
+        <Typography sx={fontTypography} key={index}>
           {purch?.name} - {purch?.date}
         </Typography>
       );

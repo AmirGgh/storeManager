@@ -10,7 +10,11 @@ import {
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
-import { getProductSum, useToggle } from "../../utils/displayDataUi";
+import {
+  fontTypography,
+  getProductSum,
+  useToggle,
+} from "../../utils/displayDataUi";
 import Add from "../feachers/Add";
 import AddNewProduct from "../feachers/AddNewProduct";
 import EditCustomer from "../feachers/EditCustomer";
@@ -44,11 +48,11 @@ const Products = (props) => {
   return (
     <Container maxWidth='lg' sx={{ backgroundColor: "main.dark" }}>
       <Box>
-        <Typography variant='h4' align='center' gutterBottom>
+        <Typography sx={fontTypography} align='center' gutterBottom>
           All Products
         </Typography>
         {!adminLogin && !login && (
-          <Typography variant='h6' align='center' gutterBottom>
+          <Typography sx={fontTypography} align='center' gutterBottom>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
@@ -61,12 +65,13 @@ const Products = (props) => {
           align='center'
           sx={{ backgroundColor: "primary.gray", margin: 3, boxShadow: 5 }}
         >
-          <Typography p={1}>
+          <Typography sx={fontTypography} p={1}>
             Up to date {uptodate.toDateString()}, the store sold {prodSold}{" "}
             products in total value of {totalPurch}$.
           </Typography>
           <Button
             sx={{
+              ...fontTypography,
               backgroundColor: "primary.light",
               opacity: [0.9],
               color: "black",
@@ -106,18 +111,24 @@ const Products = (props) => {
                       color: "black",
                     }}
                   >
-                    <Typography>{p.name}</Typography>
+                    <Typography sx={fontTypography}>{p.name}</Typography>
                     <Typography
                       variant='body2'
+                      sx={fontTypography}
                       color='textSecondary'
                       component='p'
                     >
                       {p.details}
                     </Typography>
-                    <Typography>Price: {p.price}$</Typography>
-                    <Typography>Quantity:{p.quantity}</Typography>
+                    <Typography sx={fontTypography}>
+                      Price: {p.price}$
+                    </Typography>
+                    <Typography sx={fontTypography}>
+                      Quantity:{p.quantity}
+                    </Typography>
                     {login && (
                       <Button
+                        sx={fontTypography}
                         variant='contained'
                         color='primary'
                         onClick={() => {
@@ -135,13 +146,18 @@ const Products = (props) => {
                     )}
                     {adminLogin && (
                       <Box>
-                        <Typography>sold: {p.sold}</Typography>
+                        <Typography sx={fontTypography}>
+                          sold: {p.sold}
+                        </Typography>
                         {p.total > 0 && (
-                          <Typography>in total value: {p.total}$</Typography>
+                          <Typography sx={fontTypography}>
+                            in total value: {p.total}$
+                          </Typography>
                         )}
                         <Button
                           variant='contained'
                           sx={{
+                            ...fontTypography,
                             marginTop: 2,
                             backgroundColor: "primary.light",
                             color: "black",

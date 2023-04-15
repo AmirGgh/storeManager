@@ -3,16 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import {
-  ButtonGroup,
-  Chip,
-  ListItem,
-  ListItemText,
-  Paper,
-  styled,
-} from "@mui/material";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
+import { Chip, Container, Grid, ListItem, Paper, styled } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { handleBuy } from "./utilsDB";
@@ -21,6 +14,8 @@ const StyleModale = styled(Modal)({
   display: "flex",
   alignItems: "center",
   jastifyContent: "center",
+  p: 1,
+  ...fontTypography,
 });
 
 // Add new product to customers
@@ -44,23 +39,20 @@ const Add = (props) => {
       aria-describedby='modal-modal-description'
     >
       {/* Customer can add the product he click on */}
-      <Box sx={styleBoxModal}>
+      <Box sx={{ ...styleBoxModal, ...fontTypography }}>
         {login && (
           <Paper
             sx={{
+              ...fontTypography,
               justifyContent: "center",
               flexWrap: "wrap",
-              padding: 3,
+              p: { xs: 0.5, sm: 1, md: 2, lg: 4 },
               boxShadow: 3,
             }}
           >
-            <Typography sx={fontTypography} variant='body1'>
-              Product: {props.name}{" "}
-            </Typography>
+            <Typography>Product: {props.name} </Typography>
 
-            <Typography sx={fontTypography} variant='body1'>
-              price: {props.price}{" "}
-            </Typography>
+            <Typography>price: {props.price} </Typography>
             <Button
               onClick={() => {
                 const buyProd = [
@@ -85,76 +77,20 @@ const Add = (props) => {
         )}
         <br />
         {/* Admin and customers can add multiple products */}
-        <Typography sx={fontTypography} variant='body2'>
-          add new product from The list:
-        </Typography>
-        <Paper
-          sx={{
-            justifyContent: "center",
-            flexWrap: "wrap",
-            padding: 3,
-            boxShadow: 3,
-          }}
-        >
+        <Typography>add new product from The list:</Typography>
+        <Paper sx={{ padding: 1 }}>
           {products.length > 0 &&
             products.map((prod) => {
               return (
                 prod.quantity > 0 && (
-                  <ListItem>
-                    <ListItem
-                      key={prod.id}
-                      sx={{
-                        borderRadius: 1,
-                        boxShadow: 3,
-                        margin: 0.5,
-                        maxWidth: 400,
-                        backgroundColor: "primary.bright",
-                      }}
-                      align='center'
+                  <Grid container spacing={1}>
+                    <Grid
+                      xs={1}
+                      container
+                      justifyContent='center'
+                      alignItems='center'
                     >
-                      <Typography
-                        key={prod.name}
-                        sx={fontTypography}
-                        variant='body2'
-                      >
-                        {prod.name}
-                      </Typography>
-                      <Typography
-                        variant='body1'
-                        key={prod.price}
-                        align='right'
-                        sx={fontTypography}
-                      >
-                        price: {prod.price}
-                      </Typography>
-                      <Typography
-                        sx={fontTypography}
-                        variant='body1'
-                        key={prod.quantity}
-                        p={1}
-                      >
-                        quantity: {prod.quantity}
-                      </Typography>
-                    </ListItem>
-                    <ButtonGroup
-                      sx={{
-                        borderRadius: 1,
-                        boxShadow: 3,
-                        margin: 0.5,
-                      }}
-                      size='small'
-                      orientation='vertical'
-                      disableElevation
-                      variant='contained'
-                      aria-label='Disabled elevation buttons'
-                    >
-                      <Button
-                        sx={{
-                          borderRadius: 1,
-                          boxShadow: 3,
-                          backgroundColor: "primary.light",
-                          ...fontTypography,
-                        }}
+                      <AddIcon
                         onClick={() =>
                           setProdList([
                             ...prodList,
@@ -167,10 +103,32 @@ const Add = (props) => {
                             },
                           ])
                         }
-                      >
-                        <AddCircleOutlineOutlinedIcon />
-                      </Button>
-                      <Button
+                      />
+                    </Grid>
+
+                    <Grid Typography xs={5} padding={1}>
+                      <Typography key={prod.name} align='left' padding={1}>
+                        {prod.name}
+                      </Typography>
+                    </Grid>
+                    <Grid
+                      container
+                      xs={5}
+                      alignItems={"center"}
+                      justifyContent={"flex-end"}
+                      padding={1}
+                    >
+                      <Typography key={prod.price} align='right'>
+                        price:{prod.price} quantity:{prod.quantity}
+                      </Typography>
+                    </Grid>
+                    <Grid
+                      xs={1}
+                      container
+                      justifyContent='center'
+                      alignItems='center'
+                    >
+                      <RemoveIcon
                         onClick={() => {
                           let fl = true;
                           const p = prodList.filter((pl) => {
@@ -183,17 +141,9 @@ const Add = (props) => {
                           });
                           setProdList(p);
                         }}
-                        sx={{
-                          borderRadius: 1,
-                          boxShadow: 3,
-                          backgroundColor: "primary.light",
-                          ...fontTypography,
-                        }}
-                      >
-                        <RemoveCircleOutlineOutlinedIcon />
-                      </Button>
-                    </ButtonGroup>
-                  </ListItem>
+                      />
+                    </Grid>
+                  </Grid>
                 )
               );
             })}
@@ -209,15 +159,24 @@ const Add = (props) => {
             }}
           >
             {prodList.length > 0 && (
-              <Box>
+              <Container>
                 {prodList.map((prInList) => {
-                  <Chip label='Chip Filled' sx={{ margin: 0.5 }} />;
-                  return <Chip label={prInList.name} sx={fontTypography} />;
+                  <Chip
+                    label='Chip Filled'
+                    sx={{ margin: 0.5, ...fontTypography }}
+                    size='small'
+                  />;
+                  return (
+                    <Chip
+                      label={prInList.name}
+                      sx={{ margin: 0.5, ...fontTypography }}
+                      size='small'
+                    />
+                  );
                 })}
-              </Box>
+              </Container>
             )}
             <Typography
-              variant='body1'
               id='modal-modal-description'
               sx={{ mt: 2, ...fontTypography }}
             >
@@ -226,7 +185,7 @@ const Add = (props) => {
                   handleBuy(prodList, products);
                   props.closeBuy();
                 }}
-                sx={fontTypography}
+                sx={{ backgroundColor: "primary.light", ...fontTypography }}
               >
                 Add Products
               </Button>

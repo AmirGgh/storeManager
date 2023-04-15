@@ -12,7 +12,7 @@ import { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { deleteProduct, update } from "./utilsDB";
 import CustomerOfProduct from "./customerOfProduct";
-import { styleBoxModal } from "../../utils/displayDataUi";
+import { fontTypography, styleBoxModal } from "../../utils/displayDataUi";
 
 import "firebase/storage";
 import { useToggle } from "../../utils/displayDataUi";
@@ -34,6 +34,7 @@ const EditProd = (props) => {
   const [updates, setUpdates] = useToggle();
   // upload new image, and delete the old one from storage.
   // Also save link and location of the new image.
+
   async function uploadImage() {
     const storage = getStorage();
     const refImg = `${Date.now()}-${imageUpload.name}`;
@@ -75,18 +76,24 @@ const EditProd = (props) => {
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
     >
-      <Box sx={styleBoxModal}>
-        <Typography id='modal-modal-title' variant='h6' component='h2'>
+      <Box sx={{ ...styleBoxModal, ...fontTypography }}>
+        <Typography
+          sx={fontTypography}
+          id='modal-modal-title'
+          variant='h6'
+          component='h2'
+        >
           Edit Product - {product.name}
         </Typography>
         <Box>
           <Accordion>
             <AccordionSummary
+              sx={fontTypography}
               expandIcon={<ExpandMoreIcon />}
               aria-controls='panel1a-content'
               id='panel1a-header'
             >
-              <Typography>Change Image</Typography>
+              <Typography sx={fontTypography}>Change Image</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ margin: 1 }}>
@@ -107,6 +114,7 @@ const EditProd = (props) => {
                 )}
                 {updates && (
                   <Button
+                    sx={fontTypography}
                     variant='contained'
                     onClick={() => {
                       uploadImage();
@@ -124,7 +132,7 @@ const EditProd = (props) => {
               aria-controls='panel2a-content'
               id='panel2a-header'
             >
-              <Typography>Edit Details</Typography>
+              <Typography sx={fontTypography}>Edit Details</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box>
@@ -180,7 +188,9 @@ const EditProd = (props) => {
               aria-controls='panel3a-content'
               id='panel3a-header'
             >
-              <Typography>Customers Of This Product</Typography>
+              <Typography sx={fontTypography}>
+                Customers Of This Product
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <CustomerOfProduct
@@ -192,6 +202,7 @@ const EditProd = (props) => {
             </AccordionDetails>
           </Accordion>
         </Box>
+        <br />
         <Box>
           <Button
             onClick={() => {
@@ -199,6 +210,7 @@ const EditProd = (props) => {
               update(updateProd, props.editProdId, "Products");
             }}
             sx={{
+              ...fontTypography,
               backgroundColor: "primary.light",
               "&:hover": { backgroundColor: "primary.green" },
             }}
@@ -212,12 +224,14 @@ const EditProd = (props) => {
               deleteImg();
             }}
             sx={{
+              ...fontTypography,
+
               backgroundColor: "primary.light",
               "&:hover": { backgroundColor: "primary.red" },
               margin: 1,
             }}
           >
-            Delete From Store
+            Delete
           </Button>
         </Box>
         <br />
