@@ -50,9 +50,9 @@ const Add = (props) => {
               boxShadow: 3,
             }}
           >
-            <Typography>Product: {props.name} </Typography>
+            <Typography sx={fontTypography}>Product: {props.name} </Typography>
 
-            <Typography>price: {props.price} </Typography>
+            <Typography sx={fontTypography}>price: {props.price} </Typography>
             <Button
               onClick={() => {
                 const buyProd = [
@@ -77,7 +77,9 @@ const Add = (props) => {
         )}
         <br />
         {/* Admin and customers can add multiple products */}
-        <Typography>add new product from The list:</Typography>
+        <Typography sx={fontTypography}>
+          add new product from The list:
+        </Typography>
         <Paper sx={{ padding: 1 }}>
           {products.length > 0 &&
             products.map((prod) => {
@@ -107,7 +109,12 @@ const Add = (props) => {
                     </Grid>
 
                     <Grid Typography xs={5} padding={1}>
-                      <Typography key={prod.name} align='left' padding={1}>
+                      <Typography
+                        sx={fontTypography}
+                        key={prod.name}
+                        align='left'
+                        padding={1}
+                      >
                         {prod.name}
                       </Typography>
                     </Grid>
@@ -118,7 +125,11 @@ const Add = (props) => {
                       justifyContent={"flex-end"}
                       padding={1}
                     >
-                      <Typography key={prod.price} align='right'>
+                      <Typography
+                        sx={fontTypography}
+                        key={prod.price}
+                        align='right'
+                      >
                         price:{prod.price} quantity:{prod.quantity}
                       </Typography>
                     </Grid>
