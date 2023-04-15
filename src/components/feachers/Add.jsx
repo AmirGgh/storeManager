@@ -16,7 +16,12 @@ import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOut
 import { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { handleBuy } from "./utilsDB";
-import { styleBoxModal } from "../../utils/displayDataUi";
+import { fontTypography, styleBoxModal } from "../../utils/displayDataUi";
+const StyleModale = styled(Modal)({
+  display: "flex",
+  alignItems: "center",
+  jastifyContent: "center",
+});
 
 // Add new product to customers
 const Add = (props) => {
@@ -29,7 +34,7 @@ const Add = (props) => {
   };
 
   return (
-    <Modal
+    <StyleModale
       open={open}
       onClose={() => {
         handleClose();
@@ -49,9 +54,13 @@ const Add = (props) => {
               boxShadow: 3,
             }}
           >
-            <Typography>Product: {props.name} </Typography>
+            <Typography sx={fontTypography} variant='body1'>
+              Product: {props.name}{" "}
+            </Typography>
 
-            <Typography>price: {props.price} </Typography>
+            <Typography sx={fontTypography} variant='body1'>
+              price: {props.price}{" "}
+            </Typography>
             <Button
               onClick={() => {
                 const buyProd = [
@@ -67,6 +76,7 @@ const Add = (props) => {
               }}
               sx={{
                 backgroundColor: "primary.light",
+                ...fontTypography,
               }}
             >
               Buy Only This Product
@@ -75,7 +85,7 @@ const Add = (props) => {
         )}
         <br />
         {/* Admin and customers can add multiple products */}
-        <Typography variant='h6' component='h2'>
+        <Typography sx={fontTypography} variant='body2'>
           add new product from The list:
         </Typography>
         <Paper
@@ -97,17 +107,32 @@ const Add = (props) => {
                         borderRadius: 1,
                         boxShadow: 3,
                         margin: 0.5,
-                        fontSize: 8,
                         maxWidth: 400,
                         backgroundColor: "primary.bright",
                       }}
                       align='center'
                     >
-                      <ListItemText key={prod.name} primary={prod.name} />
-                      <Typography key={prod.price} align='right'>
+                      <Typography
+                        key={prod.name}
+                        sx={fontTypography}
+                        variant='body2'
+                      >
+                        {prod.name}
+                      </Typography>
+                      <Typography
+                        variant='body1'
+                        key={prod.price}
+                        align='right'
+                        sx={fontTypography}
+                      >
                         price: {prod.price}
                       </Typography>
-                      <Typography key={prod.quantity} p={1}>
+                      <Typography
+                        sx={fontTypography}
+                        variant='body1'
+                        key={prod.quantity}
+                        p={1}
+                      >
                         quantity: {prod.quantity}
                       </Typography>
                     </ListItem>
@@ -117,6 +142,8 @@ const Add = (props) => {
                         boxShadow: 3,
                         margin: 0.5,
                       }}
+                      size='small'
+                      orientation='vertical'
                       disableElevation
                       variant='contained'
                       aria-label='Disabled elevation buttons'
@@ -126,6 +153,7 @@ const Add = (props) => {
                           borderRadius: 1,
                           boxShadow: 3,
                           backgroundColor: "primary.light",
+                          ...fontTypography,
                         }}
                         onClick={() =>
                           setProdList([
@@ -159,6 +187,7 @@ const Add = (props) => {
                           borderRadius: 1,
                           boxShadow: 3,
                           backgroundColor: "primary.light",
+                          ...fontTypography,
                         }}
                       >
                         <RemoveCircleOutlineOutlinedIcon />
@@ -183,16 +212,21 @@ const Add = (props) => {
               <Box>
                 {prodList.map((prInList) => {
                   <Chip label='Chip Filled' sx={{ margin: 0.5 }} />;
-                  return <Chip label={prInList.name} />;
+                  return <Chip label={prInList.name} sx={fontTypography} />;
                 })}
               </Box>
             )}
-            <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+            <Typography
+              variant='body1'
+              id='modal-modal-description'
+              sx={{ mt: 2, ...fontTypography }}
+            >
               <Button
                 onClick={() => {
                   handleBuy(prodList, products);
                   props.closeBuy();
                 }}
+                sx={fontTypography}
               >
                 Add Products
               </Button>
@@ -200,7 +234,7 @@ const Add = (props) => {
           </Paper>
         )}
       </Box>
-    </Modal>
+    </StyleModale>
   );
 };
 

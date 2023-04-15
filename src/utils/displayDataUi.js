@@ -72,12 +72,15 @@ const styleBoxModal = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  minWith: { xs: 400, sm: 500, md: 800 },
-  minHight: { xs: 250, sm: 500, md: 800 },
+  maxWith: { xs: 80, sm: 200, md: 600 },
+  maxHight: { xs: 100, sm: 300, md: 800 },
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+};
+const fontTypography = {
+  fontSize: { xs: "0.7rem", sm: "0.9rem", md: "1rem", lg: "1.2rem" },
 };
 export {
   useToggle,
@@ -86,4 +89,5 @@ export {
   getCustList,
   generateColors,
   styleBoxModal,
+  fontTypography,
 };

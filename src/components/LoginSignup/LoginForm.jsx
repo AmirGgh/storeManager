@@ -91,6 +91,8 @@ const LoginForm = (props) => {
               />
             </Grid>
             <Grid item xs={12}>
+              <Typography>Admin: username- storeA | password- 111</Typography>
+              <Typography>Admin: username- dna | password- dna</Typography>
               <Button
                 variant='contained'
                 onClick={() => {
